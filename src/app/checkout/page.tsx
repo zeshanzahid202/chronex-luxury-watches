@@ -1,0 +1,2 @@
+import {CheckoutForm} from "@/components/checkout-form";import {getSession} from "@/lib/auth";import Link from "next/link";
+export default async function Checkout(){const user=await getSession();return <div className="shell"><header className="page-title"><span className="eyebrow">A considered purchase</span><h1 className="display">Checkout</h1></header>{!user?<div className="notice" style={{maxWidth:600,marginBottom:100}}>Please sign in before checkout. <Link href="/account" className="gold-link">Go to your account ↗</Link></div>:<CheckoutForm/>}</div>}

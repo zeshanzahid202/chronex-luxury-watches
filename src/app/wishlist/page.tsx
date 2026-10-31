@@ -1,0 +1,4 @@
+"use client";
+import {useEffect,useState} from "react";
+import {ProductCard} from "@/components/product-card";
+export default function Wishlist(){const [items,setItems]=useState<any[]>([]);useEffect(()=>{const ids:string[]=JSON.parse(localStorage.getItem("chronex-wishlist")||"[]");fetch("/api/products").then(r=>r.json()).then(d=>setItems((d.products||[]).filter((p:any)=>ids.includes(p.slug)))).catch(()=>{})},[]);return <div className="shell"><header className="page-title"><span className="eyebrow">Kept close</span><h1 className="display">Your wishlist</h1></header>{items.length?<div className="product-grid" style={{paddingBottom:100}}>{items.map(p=><ProductCard key={p.slug} product={p}/>)}</div>:<div className="empty">Your wishlist is empty for now.<p><a className="gold-link" href="/shop">Explore timepieces ↗</a></p></div>}</div>}

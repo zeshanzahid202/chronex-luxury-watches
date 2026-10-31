@@ -1,0 +1,1 @@
+import Link from "next/link";export default function NotFound(){return <div className="shell empty" style={{padding:"150px 20px"}}><span className="eyebrow">404 · Lost in time</span><h1 className="display" style={{fontSize:72}}>This moment<br/>is elsewhere.</h1><Link className="gold-link" href="/">Return to CHRONEX ↗</Link></div>}

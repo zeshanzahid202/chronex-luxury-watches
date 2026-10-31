@@ -1,0 +1,1 @@
+import {AuthForms} from "@/components/auth-forms";export default function Account(){return <div className="shell"><header className="page-title"><span className="eyebrow">Client services</span><h1 className="display">Your account</h1><p style={{color:"#aaa69e"}}>Access your order history and client details.</p></header><AuthForms/></div>}

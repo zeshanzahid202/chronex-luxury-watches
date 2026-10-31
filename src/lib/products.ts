@@ -1,0 +1,12 @@
+export const showcase = [
+  { _id: "demo-1", name: "Nocturne 38", slug: "nocturne-38", reference: "CX-038-OB", collection: "Nocturne", price: 1280000, currency: "USD", description: "A study in quiet precision, finished in brushed steel and deep midnight enamel.", image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=1200&q=85", material: "316L steel", dial: "Obsidian", strap: "Italian leather", movement: "Automatic", diameter: "38 mm", waterResistance: "50 m", stock: 4, featured: true },
+  { _id: "demo-2", name: "Meridian 41", slug: "meridian-41", reference: "CX-041-CH", collection: "Meridian", price: 1640000, currency: "USD", description: "A refined companion for every longitude, with a warm champagne dial.", image: "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=1200&q=85", material: "18k rose gold", dial: "Champagne", strap: "Alligator leather", movement: "Automatic GMT", diameter: "41 mm", waterResistance: "100 m", stock: 2, featured: true },
+  { _id: "demo-3", name: "Atelier 36", slug: "atelier-36", reference: "CX-036-IV", collection: "Atelier", price: 980000, currency: "USD", description: "Considered proportions, an ivory sunray dial, and a hand-finished profile.", image: "https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=1200&q=85", material: "316L steel", dial: "Ivory", strap: "Calfskin", movement: "Automatic", diameter: "36 mm", waterResistance: "50 m", stock: 7, featured: false },
+  { _id: "demo-4", name: "Aurelia 39", slug: "aurelia-39", reference: "CX-039-GD", collection: "Aurelia", price: 2120000, currency: "USD", description: "Sculpted in light, the Aurelia pairs a gold-toned case with restrained detail.", image: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=1200&q=85", material: "18k yellow gold", dial: "Silver", strap: "Gold bracelet", movement: "Automatic", diameter: "39 mm", waterResistance: "100 m", stock: 1, featured: false },
+];
+export async function getProducts() {
+  try { const { connectDB } = await import("@/lib/db"); const { Product } = await import("@/models"); await connectDB(); const docs = await Product.find({ published: true }).sort({ featured: -1, createdAt: -1 }).lean(); if (docs.length) return docs.map((d) => ({ ...d, _id: String(d._id) })); } catch { /* Demo catalog keeps the storefront previewable before database setup. */ }
+  return showcase;
+}
+import { money } from "@/lib/money";
+export { money } from "@/lib/money";

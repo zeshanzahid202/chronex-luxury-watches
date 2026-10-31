@@ -1,0 +1,2 @@
+import {getSession} from "@/lib/auth";import {connectDB} from "@/lib/db";import {Order} from "@/models";import {jsonError} from "@/lib/http";
+export async function GET(){const session=await getSession();if(session?.role!=="admin")return jsonError("Admin access required.",403);await connectDB();const orders=await Order.find().sort({createdAt:-1}).limit(100).populate("user","name email").lean();return Response.json({orders})}
